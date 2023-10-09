@@ -8,7 +8,7 @@ export function SearchPage () {
   const { pokemon: pokemons, loading } = usePokemon({ keyword, state })
 
   return (
-    <div className='pt-18'>
+    <div className='pt-24  sm:pt-16 '>
       <PokemonList pokemon={pokemons} loading={loading} />
     </div>
   )
