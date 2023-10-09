@@ -9,7 +9,7 @@ export function Home () {
   const handleNextPage = () => setPage(prevPage => prevPage + 1)
 
   return (
-    <div className='pt-18 pb-2'>
+    <div className=' pt-24  md:pt-18 pb-2'>
       <PokemonList pokemon={pokemon} loading={loading} />
       <button className='bg-blue-500 w-full text-lg font-bold tracking-wider rounded-md mt-4 py-2 hover:bg-blue-600' onClick={handleNextPage}>Cargar más</button>
     </div>
