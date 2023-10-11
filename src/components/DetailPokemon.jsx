@@ -4,7 +4,7 @@ import Image from './Image'
 
 export default function DetailPokemon ({ pokemon }) {
   return (
-    <main className='absolute top-0 left-0 bottom-0 right-0 pt-24 w-full px-2 py-2   overflow-auto sm:flex sm:items-center sm:justify-center sm:pt-16' style={{ backgroundColor: pokemon.color }}>
+    <main className='absolute h-screen pt-24 w-full px-2 py-2   overflow-auto sm:flex sm:items-center sm:justify-center sm:pt-16' style={{ backgroundColor: pokemon.color }}>
       <div className='absolute bg-white bg-opacity-10 top-0 bottom-0 left-0 right-0 md:bg-opacity-25' />
 
       <section className='flex flex-col items-center  h-[180px] z-10 sm:h-auto'>
