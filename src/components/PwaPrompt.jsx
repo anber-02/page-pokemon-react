@@ -1,15 +1,15 @@
-// src/components/PwaPrompt.jsx
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const PwaPrompt = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null)
-  const [showPrompt, setShowPrompt] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (event) => {
-      event.preventDefault()
-      setDeferredPrompt(event)
-      setShowPrompt(true) // Mostrar el prompt al recibir el evento
+    const handleBeforeInstallPrompt = (e) => {
+      console.log('Hola soy la funcion handleBeforeInstall')
+      e.preventDefault()
+      setDeferredPrompt(e)
+      setIsVisible(true)
     }
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
@@ -19,35 +19,37 @@ export const PwaPrompt = () => {
     }
   }, [])
 
-  const handleShowPrompt = () => {
+  const handleInstallClick = () => {
+    console.log('')
     if (deferredPrompt) {
       deferredPrompt.prompt()
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          setIsVisible(false) // Oculta el banner si se acepta
+        } else {
+          console.log('Usuario rechazó la instalación de la PWA')
+        }
+      })
     }
-  }
-
-  const handleAccept = async () => {
-    if (deferredPrompt) {
-      const result = await deferredPrompt.userChoice
-      setShowPrompt(false)
-      console.log(result.outcome === 'accepted' ? 'User accepted the PWA prompt' : 'User dismissed the PWA prompt')
-      setDeferredPrompt(null)
-    }
-  }
-
-  const handleDismiss = () => {
-    setShowPrompt(false)
-    setDeferredPrompt(null)
   }
 
   return (
-    <div>
-      {showPrompt && (
-        <div>
-          <p>Do you want to install this PWA?</p>
-          <button onClick={handleDismiss}>No Thanks</button>
-          <button onClick={handleAccept}>Add To Home Screen</button>
-        </div>
-      )}
-    </div>
+    isVisible && (
+      <div className=" bg-blue-600 text-white p-4 mt-20 ">
+        <span>¡Instala nuestra app para una mejor experiencia!</span>
+        <button
+          className="ml-4 bg-blue-800 p-2 rounded"
+          onClick={() => setIsVisible(false)}
+        >
+          Cerrar
+        </button>
+        <button
+          className="ml-4 bg-blue-800 p-2 rounded"
+          onClick={handleInstallClick}
+        >
+          Instalar
+        </button>
+      </div>
+    )
   )
 }
