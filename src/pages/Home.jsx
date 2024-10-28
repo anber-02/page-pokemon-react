@@ -3,6 +3,7 @@ import { usePokemon } from '../hooks/usePokemon'
 
 export function Home () {
   const { pokemon, loading, setPage } = usePokemon()
+  console.log(pokemon)
 
   // Actualizamos el estado con una función, ya que en setPage no sabemos cual es la pagina actual
   // asi que utilizamos el estado anterior mas uno

@@ -13,7 +13,8 @@
     "@algolia/autocomplete-core": "^1.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "vite-plugin-pwa": "^0.20.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

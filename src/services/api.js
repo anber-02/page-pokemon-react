@@ -11,7 +11,7 @@ export function searchPokemon ({ q }) {
     .catch(err => console.log(err))
 }
 
-export function getPokemons ({ limit = 20, page = 0 } = {}) {
+export function getPokemons ({ limit = 10, page = 0 } = {}) {
   return fetch(`${import.meta.env.VITE_API_URL}/pokemon?limit=${limit}&offset=${page * limit}`)
     .then(res => res.json())
     .then(res => {
